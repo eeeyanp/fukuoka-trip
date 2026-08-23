@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fukuoka & Huis Ten Bosch — Oct 16–21, 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1B33;
+    --indigo:#16264A;
+    --indigo-deep:#0B1428;
+    --paper:#EDE7D9;
+    --paper-dim:#C9C2AE;
+    --gold:#D3A44C;
+    --vermillion:#C1440E;
+    --vermillion-soft:#E0693A;
+    --line:rgba(237,231,217,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--indigo-deep);
+    color:var(--paper);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    min-height:100vh;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 60px;}
+
+  header{
+    padding:8px 0 22px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Shippori Mincho', serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,42px);
+    line-height:1.15;
+    margin:0 0 8px;
+    color:var(--paper);
+  }
+  .sub{
+    color:var(--paper-dim);
+    font-size:14.5px;
+    line-height:1.5;
+  }
+
+  .tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+  }
+  .tab{
+    appearance:none;
+    border:1px solid var(--line);
+    background:var(--indigo);
+    color:var(--paper-dim);
+    padding:9px 14px;
+    border-radius:999px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s ease;
+    white-space:nowrap;
+  }
+  .tab .num{
+    font-family:'Shippori Mincho', serif;
+    color:var(--gold);
+    margin-right:6px;
+  }
+  .tab:hover{border-color:var(--gold);color:var(--paper);}
+  .tab.active{
+    background:var(--vermillion);
+    border-color:var(--vermillion);
+    color:#fff;
+  }
+  .tab.active .num{color:#fff;}
+
+  .map-shell{
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    margin-bottom:22px;
+    background:var(--indigo);
+  }
+  #map{height:420px;width:100%;background:#0B1428;}
+  .leaflet-popup-content-wrapper{
+    background:var(--indigo);
+    color:var(--paper);
+    border-radius:2px;
+  }
+  .leaflet-popup-tip{background:var(--indigo);}
+  .leaflet-popup-content b{color:var(--gold);}
+  .leaflet-popup-content a{color:var(--vermillion-soft);}
+
+  .day-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .day-title{
+    font-family:'Shippori Mincho', serif;
+    font-size:22px;
+    font-weight:700;
+  }
+  .day-title .num{color:var(--gold);}
+  .route-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:transparent;
+    border:1px solid var(--vermillion-soft);
+    color:var(--vermillion-soft);
+    padding:8px 14px;
+    border-radius:3px;
+    font-size:12.5px;
+    font-weight:500;
+    text-decoration:none;
+    transition:all .15s ease;
+  }
+  .route-btn:hover{background:var(--vermillion);border-color:var(--vermillion);color:#fff;}
+
+  .stops{list-style:none;margin:0;padding:0;}
+  .stop{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stop:last-child{border-bottom:none;}
+  .stop-time{
+    font-family:'Shippori Mincho', serif;
+    font-size:13px;
+    color:var(--gold);
+    padding-top:2px;
+  }
+  .stop-name{
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--paper);
+    margin-bottom:4px;
+  }
+  .stop-note{
+    font-size:13.5px;
+    color:var(--paper-dim);
+    line-height:1.5;
+    margin-bottom:8px;
+  }
+  .stop-link{
+    font-size:12px;
+    color:var(--vermillion-soft);
+    text-decoration:none;
+    border-bottom:1px solid rgba(224,105,58,0.35);
+    padding-bottom:1px;
+  }
+  .stop-link:hover{color:var(--gold);border-color:var(--gold);}
+
+  footer{
+    margin-top:30px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--paper-dim);
+    line-height:1.6;
+  }
+  footer b{color:var(--paper);}
+
+  @media (max-width:520px){
+    .stop{grid-template-columns:52px 1fr;}
+    #map{height:340px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Couple's Trip · Oct 16 – Oct 21, 2026</div>
+    <h1>Fukuoka & Huis Ten Bosch</h1>
+    <div class="sub">Base: THE KNOT FUKUOKA Tenjin, Daimyo. Tap a day below to see that day's route and stops — every stop links out to Google Maps for live directions.</div>
+  </header>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="map-shell">
+    <div id="map"></div>
+  </div>
+
+  <div class="day-header">
+    <div class="day-title"><span class="num" id="dayNum">01</span><span id="dayTitleText">Arrival</span></div>
+    <a class="route-btn" id="routeBtn" href="#" target="_blank" rel="noopener">Open full route in Google Maps ↗</a>
+  </div>
+
+  <ul class="stops" id="stopsList"></ul>
+
+  <footer>
+    <b>Using this offline:</b> the map tiles and the "Open in Google Maps" links need an internet connection (like any map app), but this file itself needs no account, login, or server — save it and open it in any browser, anywhere, anytime during the trip.
+  </footer>
+
+</div>
+
+<script>
+const days = [
+  {
+    title: "Arrival",
+    stops: [
+      { time:"7:00 PM", name:"Fukuoka Airport", note:"Land — subway direct to Tenjin, ~11 min.", lat:33.5849988, lng:130.4490906, placeId:"ChIJrQFpQhaQQTURtx9OWEZ_5hY" },
+      { time:"7:45 PM", name:"THE KNOT FUKUOKA Tenjin", note:"Check in, drop bags, freshen up.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"9:00 PM", name:"Nakasu Yatai (Food Stalls)", note:"Open-air stalls along the river — ramen, oden, motsunabe. Cash preferred.", lat:33.5906696, lng:130.4079063, placeId:"ChIJu43ESZSRQTURr0huMxMFZDI" }
+    ]
+  },
+  {
+    title: "Dazaifu + Hakata Old Town",
+    stops: [
+      { time:"10:00 AM", name:"Dazaifu Tenmangu Shrine", note:"Go before 10:30 to beat weekend crowds.", lat:33.5213697, lng:130.5348239, placeId:"ChIJzfvrKp-bQTURl65fp6vRJLg" },
+      { time:"11:45 AM", name:"Starbucks Dazaifu Omotesando", note:"Kengo Kuma wooden-lattice design, on the approach street.", lat:33.5197185, lng:130.5333683, placeId:"ChIJAQBhm5ibQTURD52UzZsBWXY" },
+      { time:"2:15 PM", name:"Kushida Shrine", note:"Hakata's guardian shrine — Gion Yamakasa float on display.", lat:33.5929546, lng:130.4104589, placeId:"ChIJV2pTquqRQTURpI1FhH5siaE" },
+      { time:"3:00 PM", name:"Canal City Hakata", note:"Hourly fountain show, easy browsing and rest stop.", lat:33.5896305, lng:130.4109478, placeId:"ChIJYcOBiZWRQTUR0Rl0ehe67eA" },
+      { time:"6:00 PM", name:"Yanagibashi Market area", note:"Motsunabe dinner nearby — Fukuoka's signature hot pot.", lat:33.5829794, lng:130.4084273, placeId:"ChIJcRcfs5mRQTUR5D_YhnCAeBQ" }
+    ]
+  },
+  {
+    title: "Huis Ten Bosch Day Trip",
+    stops: [
+      { time:"8:00 AM", name:"Hakata Station", note:"Depart on the direct JR Limited Express \"Huis Ten Bosch\" (~1h45m). Reserved seats recommended.", lat:33.5897275, lng:130.4207274, placeId:"ChIJdbP55seRQTURkIu5RT0r4i4" },
+      { time:"9:45 AM", name:"Huis Ten Bosch", note:"Full day: Dutch townscape, gardens, rides — then Kingdom of Lights after dark. Catch a return train by ~8:30 PM.", lat:33.0890837, lng:129.7903731, placeId:"ChIJR9a5vSW9ajURYCHgGv51Fa0" }
+    ]
+  },
+  {
+    title: "WFH + Café Hopping",
+    stops: [
+      { time:"9:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Work from the hotel or a nearby Daimyo café during the day.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"7:30 PM", name:"Ohori Park", note:"Evening lakeside walk once work wraps, ~15–20 min walk from hotel.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" }
+    ]
+  },
+  {
+    title: "Ohori, Castle & Momochi",
+    stops: [
+      { time:"9:30 AM", name:"Ohori Park", note:"Rowboats on the pond, easy morning stroll.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" },
+      { time:"11:00 AM", name:"Fukuoka Castle Ruins", note:"Stone walls and skyline views, right next to Ohori Park.", lat:33.5852452, lng:130.3832159, placeId:"ChIJQ_6JJtOTQTURigJ8dBobe18" },
+      { time:"1:30 PM", name:"Fukuoka Tower", note:"Observation deck near sunset — 234m tall, mirrored facade.", lat:33.5932846, lng:130.35151, placeId:"ChIJAQAEI6qTQTURLZF6YTY7dPk" },
+      { time:"5:30 PM", name:"Momochi Seaside Park", note:"Beach promenade, lovely at sunset with the tower lit up.", lat:33.5945933, lng:130.3512594, placeId:"ChIJVySQW6qTQTUR1FtUfzDxrNA" },
+      { time:"7:00 PM", name:"Nagahama Fish Wholesale Market", note:"Fresh, affordable seafood dinner.", lat:33.5946627, lng:130.3896121, placeId:"ChIJU5sMcSeSQTUR35W7J8ZRPhg" }
+    ]
+  },
+  {
+    title: "Departure",
+    stops: [
+      { time:"11:00 AM", name:"Tenjin Underground Mall", note:"Souvenir shopping, European-style underground arcade.", lat:33.5895719, lng:130.3997484, placeId:"ChIJ970Xo46RQTURm6GUmUJcn6Y" },
+      { time:"7:30 PM", name:"THE KNOT FUKUOKA Tenjin", note:"Collect luggage before heading to the airport.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"8:15 PM", name:"Fukuoka Airport", note:"Direct subway from Tenjin, ~11 min. Flight at 11:00 PM.", lat:33.5849988, lng:130.4490906, placeId:"ChIJrQFpQhaQQTURtx9OWEZ_5hY" }
+    ]
+  }
+];
+
+const dateLabels = ["Oct 16, Fri","Oct 17, Sat","Oct 18, Sun","Oct 19, Mon","Oct 20, Tue","Oct 21, Wed"];
+
+let map, markersLayer, routeLayer;
+let activeDay = 0;
+
+function gmapsPlaceUrl(placeId){
+  return "https://www.google.com/maps/place/?q=place_id:" + placeId;
+}
+
+function gmapsRouteUrl(stops){
+  const coords = stops.map(s => s.lat + "," + s.lng);
+  const origin = coords[0];
+  const destination = coords[coords.length - 1];
+  const waypoints = coords.slice(1, -1).join("|");
+  let url = "https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination + "&travelmode=transit";
+  if (waypoints) url += "&waypoints=" + encodeURIComponent(waypoints);
+  return url;
+}
+
+function initMap(){
+  map = L.map('map', { zoomControl: true, attributionControl: true }).setView([33.58, 130.40], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  markersLayer = L.layerGroup().addTo(map);
+  routeLayer = L.layerGroup().addTo(map);
+}
+
+function goldDivIcon(index){
+  return L.divIcon({
+    className: '',
+    html: '<div style="background:#C1440E;color:#fff;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;border:2px solid #EDE7D9;box-shadow:0 2px 6px rgba(0,0,0,0.4);"><span style="transform:rotate(45deg);font-family:Zen Kaku Gothic New,sans-serif;font-size:11px;font-weight:700;">' + (index+1) + '</span></div>',
+    iconSize: [26,26],
+    iconAnchor: [13,26],
+    popupAnchor: [0,-24]
+  });
+}
+
+function renderDay(idx){
+  activeDay = idx;
+  const day = days[idx];
+
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.getElementById('dayNum').textContent = String(idx+1).padStart(2,'0');
+  document.getElementById('dayTitleText').textContent = day.title;
+
+  const routeBtn = document.getElementById('routeBtn');
+  routeBtn.href = gmapsRouteUrl(day.stops);
+
+  markersLayer.clearLayers();
+  routeLayer.clearLayers();
+
+  const latlngs = [];
+  day.stops.forEach((s, i) => {
+    const marker = L.marker([s.lat, s.lng], { icon: goldDivIcon(i) }).addTo(markersLayer);
+    marker.bindPopup('<b>' + s.time + '</b><br>' + s.name + '<br><a href="' + gmapsPlaceUrl(s.placeId) + '" target="_blank" rel="noopener">Open in Google Maps ↗</a>');
+    latlngs.push([s.lat, s.lng]);
+  });
+
+  if (latlngs.length > 1) {
+    L.polyline(latlngs, { color: '#D3A44C', weight: 2.5, opacity: 0.8, dashArray: '1,8', lineCap: 'round' }).addTo(routeLayer);
+  }
+
+  if (latlngs.length) {
+    map.fitBounds(L.latLngBounds(latlngs), { padding: [40,40], maxZoom: 14 });
+  }
+
+  const list = document.getElementById('stopsList');
+  list.innerHTML = '';
+  day.stops.forEach(s => {
+    const li = document.createElement('li');
+    li.className = 'stop';
+    li.innerHTML = `
+      <div class="stop-time">${s.time}</div>
+      <div>
+        <div class="stop-name">${s.name}</div>
+        <div class="stop-note">${s.note}</div>
+        <a class="stop-link" href="${gmapsPlaceUrl(s.placeId)}" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+      </div>`;
+    list.appendChild(li);
+  });
+}
+
+function initTabs(){
+  const tabsEl = document.getElementById('tabs');
+  days.forEach((day, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span>' + dateLabels[i];
+    btn.onclick = () => renderDay(i);
+    tabsEl.appendChild(btn);
+  });
+}
+
+initMap();
+initTabs();
+renderDay(0);
+</script>
+
+</body>
+</html>
