@@ -192,9 +192,9 @@
 <div class="wrap">
 
   <header>
-    
-    <h1>Fukuoka Oct 16 – Oct 21, 2026</h1>
-    <div class="sub">Base: THE KNOT FUKUOKA Tenjin, Daimyo. <br /> Tap a day below to see that day's route and stops — every stop links out to Google Maps for live directions.</div>
+    <div class="eyebrow">Couple's Trip · Oct 16 – Oct 21, 2026</div>
+    <h1>Fukuoka & Huis Ten Bosch</h1>
+    <div class="sub">Base: THE KNOT FUKUOKA Tenjin, Daimyo. Tap a day below to see that day's route and stops — every stop links out to Google Maps for live directions.</div>
   </header>
 
   <div class="tabs" id="tabs"></div>
@@ -227,14 +227,27 @@ const days = [
     ]
   },
   {
-    title: "Dazaifu + Hakata Old Town",
+    title: "Dazaifu + Yufuin + Beppu Ropeway (Guided Tour)",
     stops: [
-      { time:"9:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel, walk 10 min to Nishitetsu Fukuoka (Tenjin) Station.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"10:00 AM", name:"Dazaifu Tenmangu Shrine", note:"Go before 10:30 to beat weekend crowds.", lat:33.5213697, lng:130.5348239, placeId:"ChIJzfvrKp-bQTURl65fp6vRJLg" },
-      { time:"11:45 AM", name:"Starbucks Dazaifu Omotesando", note:"Kengo Kuma wooden-lattice design, on the approach street.", lat:33.5197185, lng:130.5333683, placeId:"ChIJAQBhm5ibQTURD52UzZsBWXY" },
-      { time:"2:15 PM", name:"Kushida Shrine", note:"Hakata's guardian shrine — Gion Yamakasa float on display.", lat:33.5929546, lng:130.4104589, placeId:"ChIJV2pTquqRQTURpI1FhH5siaE" },
-      { time:"3:00 PM", name:"Canal City Hakata", note:"Hourly fountain show, easy browsing and rest stop.", lat:33.5896305, lng:130.4109478, placeId:"ChIJYcOBiZWRQTUR0Rl0ehe67eA" },
-      { time:"6:00 PM", name:"Yanagibashi Market area", note:"Motsunabe dinner nearby — Fukuoka's signature hot pot.", lat:33.5829794, lng:130.4084273, placeId:"ChIJcRcfs5mRQTUR5D_YhnCAeBQ" }
+      { time:"8:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel, walk/subway to the tour meet-up point (~15 min, arrive 15 min before departure).", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"8:15 AM", name:"LAWSON Oriental Hotel Fukuoka Store", note:"Tour meet-up point near Hakata Station. Bus departs 8:30 AM sharp.", lat:33.5905739, lng:130.4222477, placeId:"ChIJS3hZYciRQTURtQAjGww0cog" },
+      { time:"~9:30–11:00 AM", name:"Dazaifu Tenmangu Shrine", note:"1.5 hrs, self-guided, free entry — included in the tour.", lat:33.5213697, lng:130.5348239, placeId:"ChIJzfvrKp-bQTURl65fp6vRJLg" },
+      { time:"~1:00–2:00 PM", name:"Beppu Ropeway", note:"1 hr, self-guided — cable car up Mt. Tsurumi, panoramic views. Ticket paid on-site (~1,800 yen), not included in tour price.", lat:33.2779012, lng:131.4487593, placeId:"ChIJVVUlMwSmRjURs23KONRTvcg" },
+      { time:"~3:00–5:20 PM", name:"Yufuin Town, Kinrin Lake & Floral Village", note:"2h20m combined, self-guided, free entry — all included in the tour.", lat:33.2666644, lng:131.3690272, placeId:"ChIJa7QFnn2uRjUR5ofN82Ctd44" },
+      { time:"6:20 PM", name:"LAWSON Oriental Hotel Fukuoka Store", note:"Tour returns to the drop-off point.", lat:33.5905739, lng:130.4222477, placeId:"ChIJS3hZYciRQTURtQAjGww0cog" },
+      { time:"7:00 PM", name:"Dinner near Tenjin/Daimyo", note:"Walk/subway back to the hotel area for dinner.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" }
+    ]
+  },
+  {
+    title: "Relaxed City Day: Ohori, Tower & Momochi",
+    stops: [
+      { time:"9:30 AM", name:"Ohori Park", note:"Easy morning stroll, rowboats on the pond — close to the hotel, no rush.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" },
+      { time:"11:00 AM", name:"Fukuoka Castle Ruins", note:"Stone walls and skyline views, right next to Ohori Park.", lat:33.5852452, lng:130.3832159, placeId:"ChIJQ_6JJtOTQTURigJ8dBobe18" },
+      { time:"12:00 PM", name:"Cafe lunch break, Daimyo/Ohori area", note:"Relaxed lunch, no fixed spot — pick whatever looks good.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"2:00 PM", name:"Fukuoka Tower", note:"Observation deck, 234m mirrored facade — nice light in the afternoon.", lat:33.5932846, lng:130.35151, placeId:"ChIJAQAEI6qTQTURLZF6YTY7dPk" },
+      { time:"3:30 PM", name:"Momochi Seaside Park", note:"Beach promenade walk, unhurried.", lat:33.5945933, lng:130.3512594, placeId:"ChIJVySQW6qTQTUR1FtUfzDxrNA" },
+      { time:"5:00 PM", name:"Cafe time, Momochi/Daimyo", note:"Wind down with coffee or dessert before dinner.", lat:33.5945933, lng:130.3512594, placeId:"ChIJVySQW6qTQTUR1FtUfzDxrNA" },
+      { time:"7:00 PM", name:"Dinner, Tenjin/Daimyo", note:"Casual dinner back near the hotel.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" }
     ]
   },
   {
@@ -246,28 +259,20 @@ const days = [
     ]
   },
   {
-    title: "WFH + Café Hopping",
+    title: "Nanzoin Temple + teamLab Forest",
     stops: [
-      { time:"9:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Work from the hotel or a nearby Daimyo café during the day.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"7:30 PM", name:"Ohori Park", note:"Evening lakeside walk once work wraps, ~15–20 min walk from hotel.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" }
+      { time:"8:30 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel for Hakata Station.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"9:00 AM", name:"Kidonanzoin-Mae Station", note:"JR Sasaguri Line from Hakata, ~25 min.", lat:33.6182848, lng:130.5721217, placeId:"ChIJ8891NOeDQTURXM914R1RKaE" },
+      { time:"9:30 AM", name:"Nanzo-in Temple", note:"World's largest bronze reclining Buddha; free entry, 3-min walk from station.", lat:33.619838, lng:130.5729783, placeId:"ChIJ9z8yjuCDQTURfZ0RcNkf7Nc" },
+      { time:"12:00 PM", name:"Hakata Station", note:"Train back, then lunch nearby.", lat:33.5897275, lng:130.4207274, placeId:"ChIJdbP55seRQTURkIu5RT0r4i4" },
+      { time:"1:30 PM", name:"teamLab Forest Fukuoka", note:"5F BOSS E・ZO Fukuoka, next to PayPay Dome. Book a timed slot in advance.", lat:33.5949959, lng:130.3636745, placeId:"ChIJvQyI9LSTQTURLADawDAPIw0" }
     ]
   },
   {
-    title: "Ohori, Castle & Momochi",
+    title: "Relaxed Departure Day",
     stops: [
-      { time:"9:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel, 15\u201320 min walk (or one subway stop) to Ohori Park.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"9:30 AM", name:"Ohori Park", note:"Rowboats on the pond, easy morning stroll.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" },
-      { time:"11:00 AM", name:"Fukuoka Castle Ruins", note:"Stone walls and skyline views, right next to Ohori Park.", lat:33.5852452, lng:130.3832159, placeId:"ChIJQ_6JJtOTQTURigJ8dBobe18" },
-      { time:"1:30 PM", name:"Fukuoka Tower", note:"Observation deck near sunset — 234m tall, mirrored facade.", lat:33.5932846, lng:130.35151, placeId:"ChIJAQAEI6qTQTURLZF6YTY7dPk" },
-      { time:"5:30 PM", name:"Momochi Seaside Park", note:"Beach promenade, lovely at sunset with the tower lit up.", lat:33.5945933, lng:130.3512594, placeId:"ChIJVySQW6qTQTUR1FtUfzDxrNA" },
-      { time:"7:00 PM", name:"Nagahama Fish Wholesale Market", note:"Fresh, affordable seafood dinner.", lat:33.5946627, lng:130.3896121, placeId:"ChIJU5sMcSeSQTUR35W7J8ZRPhg" }
-    ]
-  },
-  {
-    title: "Departure",
-    stops: [
-      { time:"10:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Late breakfast, then depart hotel for Tenjin.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"11:00 AM", name:"Tenjin Underground Mall", note:"Souvenir shopping, European-style underground arcade.", lat:33.5895719, lng:130.3997484, placeId:"ChIJ970Xo46RQTURm6GUmUJcn6Y" },
+      { time:"11:00 AM", name:"Ohori Park", note:"Easy, unhurried stroll close to the hotel.", lat:33.5862065, lng:130.3764646, placeId:"ChIJx6TbjMyTQTURmPdN7915780" },
+      { time:"1:00 PM", name:"Tenjin Underground Mall", note:"Lunch and last souvenir shopping.", lat:33.5895719, lng:130.3997484, placeId:"ChIJ970Xo46RQTURm6GUmUJcn6Y" },
       { time:"7:30 PM", name:"THE KNOT FUKUOKA Tenjin", note:"Collect luggage before heading to the airport.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
       { time:"8:15 PM", name:"Fukuoka Airport", note:"Direct subway from Tenjin, ~11 min. Flight at 11:00 PM.", lat:33.5849988, lng:130.4490906, placeId:"ChIJrQFpQhaQQTURtx9OWEZ_5hY" }
     ]
