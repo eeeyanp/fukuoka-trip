@@ -192,7 +192,7 @@
 <div class="wrap">
 
   <header>
-    <div class="eyebrow"> Oct 16 – Oct 21, 2026</div>
+    <div class="eyebrow">Oct 16 – Oct 21, 2026</div>
     <h1>Fukuoka & Huis Ten Bosch</h1>
     <div class="sub">Base: THE KNOT FUKUOKA Tenjin, Daimyo. Tap a day below to see that day's route and stops — every stop links out to Google Maps for live directions.</div>
   </header>
@@ -227,15 +227,14 @@ const days = [
     ]
   },
   {
-    title: "Dazaifu + Yufuin + Beppu Ropeway (Guided Tour)",
+    title: "Huis Ten Bosch (Bus Tour, 08:50-20:00)",
     stops: [
-      { time:"8:00 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel, walk/subway to the tour meet-up point (~15 min, arrive 15 min before departure).", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"8:15 AM", name:"LAWSON Oriental Hotel Fukuoka Store", note:"Tour meet-up point near Hakata Station. Bus departs 8:30 AM sharp.", lat:33.5905739, lng:130.4222477, placeId:"ChIJS3hZYciRQTURtQAjGww0cog" },
-      { time:"~9:30–11:00 AM", name:"Dazaifu Tenmangu Shrine", note:"1.5 hrs, self-guided, free entry — included in the tour.", lat:33.5213697, lng:130.5348239, placeId:"ChIJzfvrKp-bQTURl65fp6vRJLg" },
-      { time:"~1:00–2:00 PM", name:"Beppu Ropeway", note:"1 hr, self-guided — cable car up Mt. Tsurumi, panoramic views. Ticket paid on-site (~1,800 yen), not included in tour price.", lat:33.2779012, lng:131.4487593, placeId:"ChIJVVUlMwSmRjURs23KONRTvcg" },
-      { time:"~3:00–5:20 PM", name:"Yufuin Town, Kinrin Lake & Floral Village", note:"2h20m combined, self-guided, free entry — all included in the tour.", lat:33.2666644, lng:131.3690272, placeId:"ChIJa7QFnn2uRjUR5ofN82Ctd44" },
-      { time:"6:20 PM", name:"LAWSON Oriental Hotel Fukuoka Store", note:"Tour returns to the drop-off point.", lat:33.5905739, lng:130.4222477, placeId:"ChIJS3hZYciRQTURtQAjGww0cog" },
-      { time:"7:00 PM", name:"Dinner near Tenjin/Daimyo", note:"Walk/subway back to the hotel area for dinner.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" }
+      { time:"8:15 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel for Nishitetsu Tenjin Highway Bus Terminal, ~10 min walk.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"8:35 AM", name:"Nishitetsu Tenjin Highway Bus Terminal", note:"Print vouchers required. Arrive 15 min early — bus leaves on time, no waiting.", lat:33.589226, lng:130.39984, placeId:"ChIJAWL664-RQTUR5TSegARpGQs" },
+      { time:"8:50 AM", name:"Bus departs Tenjin", note:"Also picks up at Hakata Station and Fukuoka Airport. ~2 hr ride to Huis Ten Bosch.", lat:33.589226, lng:130.39984, placeId:"ChIJAWL664-RQTUR5TSegARpGQs" },
+      { time:"~10:50 AM-7:30 PM", name:"Huis Ten Bosch", note:"Full day: Dutch townscape, gardens, rides. Illumination show around 6:30 PM — arrive early for a good spot.", lat:33.0890837, lng:129.7903731, placeId:"ChIJR9a5vSW9ajURYCHgGv51Fa0" },
+      { time:"8:00 PM", name:"Bus departs Huis Ten Bosch", note:"Park closes 9 PM — you'll leave before the very latest shows.", lat:33.0890837, lng:129.7903731, placeId:"ChIJR9a5vSW9ajURYCHgGv51Fa0" },
+      { time:"~10:00 PM", name:"Arrive back at Tenjin", note:"Nishitetsu Tenjin Highway Bus Terminal.", lat:33.589226, lng:130.39984, placeId:"ChIJAWL664-RQTUR5TSegARpGQs" }
     ]
   },
   {
@@ -251,21 +250,26 @@ const days = [
     ]
   },
   {
-    title: "Huis Ten Bosch Day Trip",
+    title: "Yufuin + Beppu Kamado Jigoku + AoT Museum (Guided Tour)",
     stops: [
-      { time:"7:15 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel early \u2014 subway/walk to Hakata Station in time for the 8:00 AM train.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
-      { time:"8:00 AM", name:"Hakata Station", note:"Depart on the direct JR Limited Express \"Huis Ten Bosch\" (~1h45m). Reserved seats recommended.", lat:33.5897275, lng:130.4207274, placeId:"ChIJdbP55seRQTURkIu5RT0r4i4" },
-      { time:"9:45 AM", name:"Huis Ten Bosch", note:"Full day: Dutch townscape, gardens, rides — then Kingdom of Lights after dark. Catch a return train by ~8:30 PM.", lat:33.0890837, lng:129.7903731, placeId:"ChIJR9a5vSW9ajURYCHgGv51Fa0" }
+      { time:"7:45 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel, walk/subway to meet-up point, ~10 min.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
+      { time:"8:00 AM", name:"Fukuoka Central Post Office", note:"Tour meet-up point in Tenjin. Bus is sometimes parked in the building next door — ask staff if unsure. Departs 8:30 AM.", lat:33.5929018, lng:130.3990277, placeId:"ChIJI_8Wdo6RQTURMKGLiPmuWu4" },
+      { time:"~9:45-10:15 AM", name:"Kamado Jigoku (Beppu)", note:"One of Beppu's hot-spring hell sites — steam-cooked onsen eggs, foot bath. ~500 yen admission.", lat:33.3163896, lng:131.4723907, placeId:"ChIJiVukIaOnRjURqERRv0ixdK8" },
+      { time:"~11:00 AM-1:00 PM", name:"Yufuin Town & Lake Kinrin", note:"Self-guided lunch and exploring. Bring cash — many street vendors are cash-only.", lat:33.2666644, lng:131.3690272, placeId:"ChIJa7QFnn2uRjUR5ofN82Ctd44" },
+      { time:"~2:30-3:00 PM", name:"Attack on Titan Museum/Annex (or Sapporo Brewery)", note:"Choose one at booking. Attack on Titan Dam photo stop beforehand. ~500-1,000 yen.", lat:33.2986117, lng:130.9435722, placeId:"ChIJ_19PrkNrQTURBMZvxYb7lcQ" },
+      { time:"~3:30-4:00 PM", name:"Mamedamachi (Hita old town)", note:"Edo-era streets — try the soy sauce ice cream.", lat:33.326596, lng:130.9363801, placeId:"ChIJUQpcrCFqQTURPnefu52aTYk" },
+      { time:"~6:00-6:20 PM", name:"Fukuoka Central Post Office", note:"Tour ends, return to drop-off point.", lat:33.5929018, lng:130.3990277, placeId:"ChIJI_8Wdo6RQTURMKGLiPmuWu4" },
+      { time:"7:00 PM", name:"Dinner near Tenjin/Daimyo", note:"Back at the hotel area.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" }
     ]
   },
   {
-    title: "Nanzoin Temple + teamLab Forest",
+    title: "Nanzoin Temple + Canal City + teamLab Forest (Optional)",
     stops: [
       { time:"8:30 AM", name:"THE KNOT FUKUOKA Tenjin", note:"Depart hotel for Hakata Station.", lat:33.5875165, lng:130.3936757, placeId:"ChIJK-zRqfWRQTURCA4pACRSfpk" },
       { time:"9:00 AM", name:"Kidonanzoin-Mae Station", note:"JR Sasaguri Line from Hakata, ~25 min.", lat:33.6182848, lng:130.5721217, placeId:"ChIJ8891NOeDQTURXM914R1RKaE" },
       { time:"9:30 AM", name:"Nanzo-in Temple", note:"World's largest bronze reclining Buddha; free entry, 3-min walk from station.", lat:33.619838, lng:130.5729783, placeId:"ChIJ9z8yjuCDQTURfZ0RcNkf7Nc" },
-      { time:"12:00 PM", name:"Hakata Station", note:"Train back, then lunch nearby.", lat:33.5897275, lng:130.4207274, placeId:"ChIJdbP55seRQTURkIu5RT0r4i4" },
-      { time:"1:30 PM", name:"teamLab Forest Fukuoka", note:"5F BOSS E・ZO Fukuoka, next to PayPay Dome. Book a timed slot in advance.", lat:33.5949959, lng:130.3636745, placeId:"ChIJvQyI9LSTQTURLADawDAPIw0" }
+      { time:"12:00 PM", name:"Canal City Hakata + Ramen Stadium", note:"Lunch at Ramen Stadium (8 famous ramen shops under one roof), then browse Canal City.", lat:33.5896305, lng:130.4109478, placeId:"ChIJYcOBiZWRQTUR0Rl0ehe67eA" },
+      { time:"1:45 PM", name:"teamLab Forest Fukuoka (Optional)", note:"5F BOSS E・ZO Fukuoka, next to PayPay Dome. Optional for now — book a timed slot in advance if confirmed.", lat:33.5949959, lng:130.3636745, placeId:"ChIJvQyI9LSTQTURLADawDAPIw0" }
     ]
   },
   {
